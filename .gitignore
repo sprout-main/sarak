@@ -1,0 +1,61 @@
+# Secrets. Every .env* variant is excluded; only the redacted template is kept.
+# .env.infinityfree holds the production database password, .env.testing holds
+# the APP_KEY, .envre is an unknown local variant. None of them belong in git.
+/.env
+/.env.*
+/.envre
+!/.env.example
+
+# Dependencies. Deliberately UNANCHORED so nested copies are covered too.
+/node_modules/
+/vendor/
+
+# Compiled assets and the storage symlink
+/public/build/
+/public/hot/
+/public/storage
+
+# Laravel runtime state
+/storage/*.key
+/storage/framework/views/
+/storage/framework/cache/
+/storage/framework/sessions/
+/storage/framework/testing/
+/storage/logs/*
+!/storage/logs/.gitignore
+
+# User-uploaded content. The photo tree and tile cache are deployment artifacts.
+/storage/app/public/*
+!/storage/app/public/.gitignore
+/storage/app/private/
+/storage/app/tiles/
+/storage/app/quarantine/
+
+# Stale nested copies, scratch directories, docs, and tasks
+/sarakbangued/
+/scratch/
+/docs/
+/tasks/
+
+# External skill corpus, not part of this project
+/woman/
+
+# Source photography for the seeder (136 MB)
+/bangued/
+
+# Deploy bundles (exceeds GitHub's 100 MB per-file limit and contains credentials)
+*.zip
+
+# Test and tooling caches
+/.phpunit.cache
+/.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+
+# Editors
+/.fleet
+/.idea
+/.vscode

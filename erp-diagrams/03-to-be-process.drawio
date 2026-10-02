@@ -1,0 +1,109 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="To-Be Process Model" id="page-0">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c101" value="Figure 3 - To-Be process model for the Sarak directory" style="text;html=1;align=center;verticalAlign=middle;resizable=0;noEdges=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;fontColor=#1f2937;" vertex="1" parent="1">
+          <mxGeometry x="0" y="10" width="1300" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="c102" value="Public&lt;br&gt;(unauthenticated)" style="shape=rectangle;whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c103" value="Contributor&lt;br&gt;(signed in)" style="shape=rectangle;whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="300" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c104" value="Administrator" style="shape=rectangle;whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="620" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c105" value="1.0 Serve map,&lt;br&gt;boundaries, tiles" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="250" y="90" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c106" value="2.0 Submit place&lt;br&gt;or photo" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="250" y="290" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c107" value="3.0 Validate and&lt;br&gt;normalise" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="510" y="290" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c108" value="4.0 Moderation&lt;br&gt;queue" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="770" y="290" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c109" value="5.0 Approve and&lt;br&gt;publish" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="290" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c110" value="6.0 Bulk import&lt;br&gt;(Overpass, Nominatim)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="510" y="520" width="210" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c111" value="7.0 Dedupe and&lt;br&gt;snapping" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="770" y="520" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c112" value="8.0 Reject, discard&lt;br&gt;and reclaim file" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="520" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c113" value="9.0 Audit every&lt;br&gt;state change" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="690" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c114" value="Places, hours,&lt;br&gt;photos (MySQL)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="250" y="700" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c115" value="Photo tree on the&lt;br&gt;public disk" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="250" y="820" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c116" value="Tile cache" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="510" y="820" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e117" value="GET /api/places" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c102" target="c105">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e118" value="POST /api/places/{id}/photos" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c103" target="c106">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e119" value="validated request" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c106" target="c107">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e120" value="queue row" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c107" target="c108">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e121" value="review" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c108" target="c109">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e122" value="reject" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c108" target="c112">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e123" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c109" target="c113">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e124" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c112" target="c113">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e125" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c110" target="c111">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e126" value="bulk promote" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c111" target="c108">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e127" value="INSERT / UPDATE" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c109" target="c114">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e128" value="store file" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c106" target="c115">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e129" value="delete file" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c112" target="c115">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e130" value="cached tiles" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c105" target="c116">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e131" value="review queue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c104" target="c108">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e132" value="admin console" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c104" target="c105">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c133" value="&lt;b&gt;Eliminated hand-offs.&lt;/b&gt; The As-Is chain of five re-keying steps collapses to a single write. Rejection now removes the uploaded file rather than leaving it on disk, and every approval, rejection, relocation and deletion is written to an append-only audit log. Administrative uploads publish directly because administrators are the moderating authority; contributor submissions always pass through 4.0." style="shape=note;whiteSpace=wrap;html=1;size=14;align=left;verticalAlign=top;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="780" width="190" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

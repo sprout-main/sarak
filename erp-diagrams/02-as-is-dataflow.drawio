@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="As-Is Data Flow Diagram" id="page-0">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c101" value="Figure 2 - Reconstructed As-Is level-0 data flow diagram" style="text;html=1;align=center;verticalAlign=middle;resizable=0;noEdges=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;fontColor=#1f2937;" vertex="1" parent="1">
+          <mxGeometry x="0" y="10" width="1200" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="c102" value="Business owner&lt;br&gt;(applicant)" style="shape=rectangle;whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c103" value="Walk-in client" style="shape=rectangle;whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="560" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c104" value="Association&lt;br&gt;officer" style="shape=rectangle;whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="320" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c105" value="1.0&lt;br&gt;Capture registration&lt;br&gt;&lt;i&gt;(handwritten form)&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="300" y="90" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c106" value="2.0&lt;br&gt;Re-key into spreadsheet&lt;br&gt;&lt;i&gt;(manual transcription)&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="560" y="90" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c107" value="3.0&lt;br&gt;Resolve duplicate and&lt;br&gt;spelling variants" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="830" y="90" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c108" value="4.0&lt;br&gt;Print directory&lt;br&gt;and issue copy" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="560" y="330" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c109" value="5.0&lt;br&gt;Retype listing onto&lt;br&gt;social media page" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="830" y="480" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c110" value="D1 Paper&lt;br&gt;register" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="300" y="560" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c111" value="D2 master.xlsx&lt;br&gt;on one desktop" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="560" y="480" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c112" value="D3 USB copy&lt;br&gt;(weekly)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="300" y="720" width="170" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e113" value="signed form" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c102" target="c105">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e114" value="filed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c105" target="c110">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e115" value="read aloud" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c110" target="c106">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e116" value="typed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c106" target="c111">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e117" value="print job" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c106" target="c108">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e118" value="scan for dupes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c111" target="c107">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e119" value="corrections" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c107" target="c111">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e120" value="photocopy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c108" target="c103">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e121" value="asks by message" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c103" target="c109">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e122" value="no write-back" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c109" target="c111">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e123" value="manual copy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c111" target="c112">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c124" value="&lt;b&gt;Manual hand-off points.&lt;/b&gt; Information moves form to paper to spreadsheet to print to social media. Each arrow is a re-keying event, so transcription error compounds at every hop. Process 5.0 reads from D2 but never writes back, so the printed directory and the online listing diverge permanently with no detection mechanism. Coordinates and boundary assignments are absent from the As-Is model entirely." style="shape=note;whiteSpace=wrap;html=1;size=14;align=left;verticalAlign=top;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="830" y="640" width="500" height="190" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

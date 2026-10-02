@@ -1,0 +1,90 @@
+# Front controller for the public/ tree, plus static asset delivery.
+# Reached either directly, or via the root .htaccess rewrite.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    # Real files (build assets, storage/photos, icons) are served as-is below.
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+
+    # Never execute anything that lands in a user-writable directory.
+    # This only ever matches real files, because the front-controller rule
+    # above already consumed every non-file request.
+    RewriteRule ^storage/.*\.(php|phtml|phar|pl|py|cgi|sh)$ - [F,L,NC]
+</IfModule>
+
+# -------------------------------------------------------------------------
+# Compression
+# -------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json application/manifest+json
+    AddOutputFilterByType DEFLATE application/xml application/xhtml+xml
+    AddOutputFilterByType DEFLATE image/svg+xml application/geo+json
+    AddOutputFilterByType DEFLATE font/ttf font/otf font/eot
+
+    # Already-compressed payloads: compressing again only burns CPU.
+    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp|avif|ico|zip|gz|br|woff2?)$ no-gzip dont-vary
+</IfModule>
+
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/xml
+    AddOutputFilterByType BROTLI_COMPRESS application/javascript application/x-javascript
+    AddOutputFilterByType BROTLI_COMPRESS application/json application/manifest+json
+    AddOutputFilterByType BROTLI_COMPRESS application/xml application/xhtml+xml
+    AddOutputFilterByType BROTLI_COMPRESS image/svg+xml application/geo+json
+</IfModule>
+
+# -------------------------------------------------------------------------
+# Browser caching
+#
+# Vite build assets are content-hashed and storage/photos filenames are
+# either content-hashed (bg_<hex>.jpg) or Laravel random hashes. Nothing in
+# either location is ever overwritten in place, so long lifetimes are safe.
+# -------------------------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    ExpiresDefault                      "access plus 1 month"
+    ExpiresByType text/html             "access plus 0 seconds"
+    ExpiresByType text/css              "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript       "access plus 1 year"
+    ExpiresByType application/json       "access plus 0 seconds"
+    ExpiresByType application/geo+json   "access plus 1 hour"
+    ExpiresByType text/csv              "access plus 1 hour"
+    ExpiresByType image/jpeg            "access plus 6 months"
+    ExpiresByType image/png             "access plus 6 months"
+    ExpiresByType image/webp            "access plus 6 months"
+    ExpiresByType image/avif            "access plus 6 months"
+    ExpiresByType image/svg+xml         "access plus 1 year"
+    ExpiresByType image/x-icon          "access plus 1 year"
+    ExpiresByType font/woff2            "access plus 1 year"
+    ExpiresByType font/woff             "access plus 1 year"
+    ExpiresByType application/manifest+json "access plus 1 day"
+</IfModule>
+
+# -------------------------------------------------------------------------
+# Security headers on static responses
+# -------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    <FilesMatch "\.(css|js|woff2?|ttf|eot|svg|png|jpe?g|webp|avif|ico)$">
+        Header set X-Content-Type-Options "nosniff"
+    </FilesMatch>
+</IfModule>
+
+Options -Indexes
+DirectoryIndex index.php

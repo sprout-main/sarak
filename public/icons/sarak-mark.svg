@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="sarakGradDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="sarakGradLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16a34a"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <radialGradient id="sarakGlowDark" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#4ade80" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#4ade80" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sarakGlowLight" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#16a34a" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <style>
+    .sarak-sq {
+      fill: #18181b;
+      stroke: rgba(255, 255, 255, 0.12);
+    }
+    .sarak-ambient {
+      fill: url(#sarakGlowDark);
+    }
+    .sarak-accent-stroke {
+      stroke: url(#sarakGradDark);
+    }
+    .sarak-accent-fill {
+      fill: url(#sarakGradDark);
+    }
+    .sarak-ring {
+      stroke: #4ade80;
+      stroke-opacity: 0.3;
+    }
+    .sarak-dot {
+      fill: #ffffff;
+    }
+
+    @media (prefers-color-scheme: light) {
+      .sarak-sq {
+        fill: #ffffff;
+        stroke: rgba(9, 9, 11, 0.1);
+      }
+      .sarak-ambient {
+        fill: url(#sarakGlowLight);
+      }
+      .sarak-accent-stroke {
+        stroke: url(#sarakGradLight);
+      }
+      .sarak-accent-fill {
+        fill: url(#sarakGradLight);
+      }
+      .sarak-ring {
+        stroke: #16a34a;
+        stroke-opacity: 0.35;
+      }
+      .sarak-dot {
+        fill: #16a34a;
+      }
+    }
+  </style>
+
+  <!-- Squircle Base -->
+  <rect x="8" y="8" width="112" height="112" rx="30" class="sarak-sq" stroke-width="2"/>
+  <rect x="8" y="8" width="112" height="112" rx="30" class="sarak-ambient"/>
+
+  <!-- Concentric Spatial Pulse Rings -->
+  <circle cx="64" cy="56" r="38" class="sarak-ring" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <circle cx="64" cy="56" r="26" class="sarak-ring" stroke-width="1.5"/>
+
+  <!-- Sarak Dynamic Crossroads Wayfinding Pin -->
+  <path d="M64 22C46.3 22 32 36.3 32 54c0 24.5 26.5 48.5 32 54 5.5-5.5 32-29.5 32-54 0-17.7-14.3-32-32-32z" class="sarak-accent-stroke" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Inner Diamond Compass -->
+  <g transform="translate(64 54)">
+    <!-- 4-point Diamond Crossroads -->
+    <path d="M0 -15L4.5 -4.5L15 0L4.5 4.5L0 15L-4.5 4.5L-15 0L-4.5 -4.5Z" class="sarak-accent-fill"/>
+    <!-- Center Focal Point -->
+    <circle cx="0" cy="0" r="3.5" class="sarak-dot"/>
+  </g>
+</svg>

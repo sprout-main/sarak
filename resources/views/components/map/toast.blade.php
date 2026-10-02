@@ -1,0 +1,1 @@
+<div x-show="toastMsg" x-cloak class="toast" role="status" x-text="toastMsg"></div>

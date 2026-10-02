@@ -1,0 +1,19 @@
+{
+    "name": "Sarak",
+    "short_name": "Sarak",
+    "description": "Sarak · Discover and pin live community places across Abra.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "any",
+    "theme_color": "#09090b",
+    "background_color": "#09090b",
+    "icons": [
+        {
+            "src": "/icons/sarak-mark.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}

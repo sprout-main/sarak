@@ -1,0 +1,55 @@
+# InfinityFree serves from /htdocs and does not allow the document root to be
+# pointed at public/, so this file fronts public/ and hides everything else.
+#
+# ORDER MATTERS. Rules are evaluated top to bottom, so the deny rules must
+# not match a URL that is about to be rewritten into public/.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # ---------------------------------------------------------------------
+    # HTTPS
+    # Only redirects when the front proxy explicitly reports plain HTTP, so
+    # this can never produce a redirect loop. If the site still serves over
+    # http (no cert yet), delete this block.
+    # ---------------------------------------------------------------------
+    RewriteCond %{HTTP:X-Forwarded-Proto} =http
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    # ---------------------------------------------------------------------
+    # Deny dotfiles (.well-known is exempt so ACME challenges still work)
+    # ---------------------------------------------------------------------
+    RewriteRule (^|/)\.(?!well-known/) - [F,L]
+
+    # ---------------------------------------------------------------------
+    # Deny backend trees.
+    #
+    # 'storage' is deliberately NOT in this list. The public disk is rooted at
+    # public/storage, so /storage/photos/<id>/<file>.jpg must survive here in
+    # order to be rewritten to public/storage/photos/<id>/<file>.jpg. Paths
+    # that do not exist under public/storage (e.g. /storage/app/...) simply
+    # 404 after the rewrite. A bare /storage request is refused below.
+    # ---------------------------------------------------------------------
+    RewriteRule ^(app|bootstrap|config|database|docs|node_modules|resources|routes|scratch|tests|vendor)(/.*)?$ - [F,L,NC]
+    RewriteRule ^storage$ - [F,L,NC]
+
+    # Deny build tooling and project documentation at the web root
+    RewriteRule ^(artisan|composer\.(json|lock)|phpunit\.xml|package(-lock)?\.json|vite\.config\.js|tailwind\.config\.js|postcss\.config\.js)$ - [F,L,NC]
+    RewriteRule .*\.(md|sql)$ - [F,L,NC]
+
+    # ---------------------------------------------------------------------
+    # Hand everything else to public/
+    # ---------------------------------------------------------------------
+    RewriteRule ^$ public/ [L]
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    <IfModule mod_alias.c>
+        RedirectMatch 302 ^/$ /public/
+    </IfModule>
+</IfModule>
+
+Options -Indexes
+DirectoryIndex index.php

@@ -1,0 +1,91 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="Proposed Deployment Topology" id="page-0">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c101" value="Figure 6 - Proposed network topology and deployment model" style="text;html=1;align=center;verticalAlign=middle;resizable=0;noEdges=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;fontColor=#1f2937;" vertex="1" parent="1">
+          <mxGeometry x="0" y="10" width="1300" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="c102" value="Visitor browser&lt;br&gt;(public map)" style="shape=rectangle;whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c103" value="Administrator&lt;br&gt;browser" style="shape=rectangle;whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="260" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c104" value="InfinityFree shared hosting edge&lt;br&gt;&lt;i&gt;Apache + PHP 8.3, no SSH, no shell&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="280" y="80" width="250" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c105" value="Document root: /htdocs" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eeeeee;strokeColor=#666666;dashed=1;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="620" y="80" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c106" value="/htdocs/.htaccess&lt;br&gt;&lt;i&gt;deny dotfiles, deny backend trees,&lt;br&gt;rewrite into public/&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="600" y="170" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c107" value="/htdocs/public/.htaccess&lt;br&gt;&lt;i&gt;front controller,&lt;br&gt;compress, cache, nosniff&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="600" y="280" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e108" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c102" target="c104">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e109" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c103" target="c104">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e110" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c104" target="c105">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e111" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c105" target="c106">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e112" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c105" target="c107">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c113" value="Laravel application&lt;br&gt;&lt;i&gt;83 routes, file sessions,&lt;br&gt;sync queue&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="930" y="150" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c114" value="MySQL 8 shared instance&lt;br&gt;&lt;i&gt;POINT and POLYGON geometry,&lt;br&gt;spatial indexes&lt;/i&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="930" y="300" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c115" value="public/storage/photo tree&lt;br&gt;&lt;i&gt;real files, served statically&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="930" y="440" width="210" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c116" value="storage/logs&lt;br&gt;&lt;i&gt;laravel.log, level error&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="930" y="560" width="210" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e117" value="index.php" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c107" target="c113">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e118" value="PDO, utf8mb4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c113" target="c114">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e119" value="writes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c113" target="c115">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e120" value="writes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c113" target="c116">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c121" value="phpMyAdmin&lt;br&gt;(control panel)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="280" y="470" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c122" value="File manager / FTP&lt;br&gt;&lt;i&gt;ftpupload.net&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="280" y="600" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e123" value="imports .sql dump" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c121" target="c114">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e124" value="extract archive" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c122" target="c105">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c125" value="Third-party geocoding and&lt;br&gt;basemap providers" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="600" y="470" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e126" value="outbound HTTPS,&lt;br&gt;server-side only" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c113" target="c125">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c127" value="&lt;b&gt;Why this shape.&lt;/b&gt; InfinityFree fixes the document root at /htdocs and offers no shell, so the framework is deployed one level above public/ and two rewrite layers bridge the gap. The public disk is a real directory inside the web root because the host cannot create the storage:link symlink; config/filesystems.php reads FILESYSTEM_PUBLIC_ROOT so the application resolves the same tree. Sessions and cache are file-backed and the queue is synchronous because no daemon is available." style="shape=note;whiteSpace=wrap;html=1;size=14;align=left;verticalAlign=top;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="620" y="600" width="520" height="150" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

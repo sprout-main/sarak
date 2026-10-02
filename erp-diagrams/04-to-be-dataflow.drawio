@@ -1,0 +1,134 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="To-Be Data Flow Diagram" id="page-0">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c101" value="Figure 4 - To-Be level-0 data flow diagram for Sarak" style="text;html=1;align=center;verticalAlign=middle;resizable=0;noEdges=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;fontColor=#1f2937;" vertex="1" parent="1">
+          <mxGeometry x="0" y="10" width="1300" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="c102" value="Browser&lt;br&gt;(Leaflet client)" style="shape=rectangle;whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c103" value="Administrator&lt;br&gt;browser" style="shape=rectangle;whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="560" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c104" value="W1 Apache&lt;br&gt;rewrite + deny rules" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.3;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="120" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c105" value="W2 Laravel&lt;br&gt;front controller" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.3;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="530" y="120" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c106" value="P1 Public read&lt;br&gt;(ETag, cached)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="800" y="60" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c107" value="P2 Authenticated&lt;br&gt;write" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="800" y="180" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c108" value="P3 Admin and&lt;br&gt;moderation" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="800" y="300" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c109" value="P4 Tile proxy" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="800" y="420" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c110" value="P5 Import pipeline" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="800" y="540" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c111" value="GeoSpatial,&lt;br&gt;BarangayResolver" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="60" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c112" value="Moderation,&lt;br&gt;Photo services" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="180" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c113" value="Import, Dedupe,&lt;br&gt;AddressEnricher" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0.12;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="540" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c114" value="D1 places,&lt;br&gt;place_hours,&lt;br&gt;place_photos" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="300" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c115" value="D2 boundary_areas&lt;br&gt;(POLYGON)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="420" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c116" value="D3 audit_log,&lt;br&gt;mod_queue" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="300" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c117" value="D4 public disk&lt;br&gt;photo tree" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="420" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c118" value="Carto basemap and&lt;br&gt;OpenStreetMap" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="530" y="640" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c119" value="Overpass API and&lt;br&gt;Nominatim" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="530" y="750" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e120" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c102" target="c104">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e121" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c103" target="c104">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e122" value="internal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c104" target="c105">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e123" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c105" target="c106">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e124" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c105" target="c107">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e125" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c105" target="c108">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e126" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c105" target="c109">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e127" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c105" target="c110">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e128" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c106" target="c111">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e129" value="ST_Within,
+ST_Distance_Sphere" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c111" target="c114">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e130" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c111" target="c115">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e131" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c107" target="c112">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e132" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c112" target="c114">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e133" value="write file" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c112" target="c117">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e134" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c108" target="c112">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e135" value="append" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c112" target="c116">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e136" value="fetch + cache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c109" target="c118">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e137" value="fetch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c110" target="c119">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e138" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c113" target="c119">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e139" value="upsert" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c113" target="c114">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e140" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c110" target="c113">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c141" value="&lt;b&gt;Trust boundaries.&lt;/b&gt; W1 is the only public-facing hop and is where every directory deny rule and the dotfile block are enforced. Outbound calls to third-party geocoding and tile services originate only from P4 and P5; no client-supplied value reaches those providers except through validated coordinates." style="shape=note;whiteSpace=wrap;html=1;size=14;align=left;verticalAlign=top;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="640" width="160" height="190" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

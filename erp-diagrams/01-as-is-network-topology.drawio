@@ -1,0 +1,61 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="As-Is Network Topology" id="page-0">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c101" value="Figure 1 - Reconstructed As-Is network topology of the target office" style="text;html=1;align=center;verticalAlign=middle;resizable=0;noEdges=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=14;fontColor=#1f2937;" vertex="1" parent="1">
+          <mxGeometry x="0" y="10" width="1200" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="c102" value="Boundary of the office LAN" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eeeeee;strokeColor=#666666;dashed=1;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="40" y="50" width="1120" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="c103" value="Office PC&lt;br&gt;&lt;i&gt;Windows 10, Chrome&lt;/i&gt;&lt;br&gt;registry held in Excel on the&lt;br&gt;desktop of this single machine" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="90" y="130" width="250" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c104" value="Laptop&lt;br&gt;&lt;i&gt;second working copy,&lt;br&gt;kept in sync manually&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="90" y="300" width="250" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c105" value="Multi-function&lt;br&gt;printer" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="400" y="130" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c106" value="External USB drive&lt;br&gt;&lt;i&gt;manual weekly copy,&lt;br&gt;stored in a drawer&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="400" y="300" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e107" value="print" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c103" target="c105">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e108" value="manual copy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c103" target="c106">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c109" value="Consumer router&lt;br&gt;&lt;i&gt;no firewall, no VLAN,&lt;br&gt;default credentials&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="660" y="180" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="e110" value="Ethernet" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c103" target="c109">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e111" value="Wi-Fi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c104" target="c109">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e112" value="Wi-Fi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c109" target="c105">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c113" value="DSL / fibre line&lt;br&gt;&lt;i&gt;20 Mbps&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;verticalAlign=top;spacingTop=4;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="940" y="180" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e114" value="WAN" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c109" target="c113">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c115" value="Facebook group page&lt;br&gt;&lt;i&gt;public listing, unmoderated&lt;/i&gt;" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="940" y="330" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e116" value="manual retyping of&lt;br&gt;each new listing" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="c103" target="c115">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c117" value="&lt;b&gt;Reconstructed baseline.&lt;/b&gt;&lt;br&gt;&lt;br&gt;No application server exists in the As-Is environment. There is no dedicated database, no shared storage service and no backup scheduler. Availability of the directory depends entirely on one desktop machine remaining switched on and undamaged.&lt;br&gt;&lt;br&gt;The second working copy on the laptop and the USB copy diverge silently; there is no reconciliation step and no version history." style="shape=note;whiteSpace=wrap;html=1;size=14;align=left;verticalAlign=top;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="640" width="1120" height="150" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
