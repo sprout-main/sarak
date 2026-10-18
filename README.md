@@ -13,12 +13,11 @@
 [![MariaDB Spatial GIS](https://img.shields.io/badge/MariaDB_Spatial_SRID_4326-003545?style=for-the-badge&logo=mariadb&logoColor=white)](https://mariadb.com)
 [![Leaflet.js](https://img.shields.io/badge/Leaflet.js-Interactive_Canvas-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com)
 [![Test Suite](https://img.shields.io/badge/Tests-240_Passed_%7C_1242_Assertions-059669?style=for-the-badge&logo=php&logoColor=white)](#-verification--rigorous-testing)
-[![Open Data](https://img.shields.io/badge/Open_Data-GeoJSON_%2F_CSV_Rails-2563eb?style=for-the-badge&logo=geojson&logoColor=white)](#-open-data-rails)
 [![License: MIT](https://img.shields.io/badge/License-MIT-f43f5e?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
 
 <br />
 
-[Overview](#-overview) • [System Architecture](#-system-architecture--spatial-topology) • [Core Invariants](#-inviolable-system-invariants) • [Role Hierarchy](#-role-hierarchy--governance-matrix) • [API Reference](#-api-surface--open-data-rails) • [Quickstart](#-installation--quickstart) • [Ingestion Pipelines](#-geospatial-ingestion-pipelines) • [Test Verification](#-verification--rigorous-testing) • [License](#-license--attribution)
+[Overview](#-overview) • [System Architecture](#-system-architecture--spatial-topology) • [Core Invariants](#-inviolable-system-invariants) • [Role Hierarchy](#-role-hierarchy--governance-matrix) • [API Reference](#-api-surface) • [Quickstart](#-installation--quickstart) • [Ingestion Pipelines](#-geospatial-ingestion-pipelines) • [Test Verification](#-verification--rigorous-testing) • [License](#-license--attribution)
 
 ---
 
@@ -77,7 +76,6 @@ graph TD
     Map -->|Public BBox & Proximity Read| Places
     Map -->|Point-in-Polygon Boundary Overlay| Boundaries
     Places -->|Audit Action Logging| AuditLog
-    Places -->|Privileged Streaming| GeoJSON["/api/export.geojson & /api/export.csv"]
 ```
 
 ---
@@ -93,7 +91,7 @@ The platform enforces five bedrock architectural invariants verified by the test
 - **Invariant III: Mathematical Point-in-Polygon Boundary Containment**  
   Every establishment pin is topologically validated against the 25 official Bangued barangay administrative boundary polygons using `ST_Contains(boundary.geom, place.geom)`. Anomaly scans and batch repair pipelines automatically re-anchor drifting pins to their valid political subdivision.
 - **Invariant IV: Anti-Gaming Contributor Karma Integrity**  
-  User reputation karma is accrued **exclusively** upon proposing a new place that successfully passes administrator diff review (+20 karma). Proposing edits, uploading photos, submitting incident reports, or claiming business listings yield exactly 0 karma.
+  User reputation karma is accrued **exclusively** upon proposing a new place that successfully passes administrator diff review (+20 karma). Proposing edits, uploading photos, or submitting incident reports yield exactly 0 karma.
 - **Invariant V: Append-Only Forensic Audit Supervision**  
   Every staff administrative action—coordinate moves, metadata updates, photo deletions, entity merges, role promotions, and account purges—is committed to an append-only `audit_log` with before/after JSON diffs.
 
@@ -135,19 +133,16 @@ The platform enforces five bedrock architectural invariants verified by the test
 | **Designate Primary Cover Photo** | ❌ | Own Uploads Only | **Any Place Image** | **Any Place Image** |
 | **Evict / Delete Photographic Assets** | ❌ | Own Uploads Only | 🗑️ **Dual-Surface Purge**| 🗑️ **Dual-Surface Purge**|
 | **Single-Pin Precision Relocation** | ❌ | ⏳ Staged to `mod_queue` | 📍 **Drag-and-Drop** | 📍 **Drag-and-Drop** |
-| **Batch Macro-Drift Mass Relocation** | ❌ | ❌ | 🌐 **Batch Vector Shift**| 🌐 **Batch Vector Shift**|
 | **Moderation Queue Diff Review & Merge**| ❌ | ❌ | ✅ Full Authority | ✅ Full Authority |
-| **Verified Merchant Ownership Claim** | ❌ | ✅ Request Claim | Admin Reassign | Admin Reassign |
 | **Administrative Boundary Anomaly Fix** | ❌ | ❌ | 🔧 Batch Containment | 🔧 Batch Containment |
 | **Trigger Geospatial Ingestion Jobs** | ❌ | ❌ | 📡 Overpass / Nominatim | 📡 Overpass / Nominatim |
-| **Export GIS Datasets (GeoJSON / CSV)** | ❌ | ❌ | 📥 Privileged Export | 📥 Privileged Export |
 | **Promote User to Staff Admin** | ❌ | ❌ | ❌ **Blocked (403)** | 👑 **Sole Authority** |
 | **Demote Staff Admin to User** | ❌ | ❌ | ❌ **Blocked (403)** | 👑 **Sole Authority** |
 | **Account Demotion & Deletion Immunity**| N/A | N/A | ❌ | 🛡️ **Permanent Invariant**|
 
 ---
 
-## 🔌 API Surface & Open Data Rails
+## 🔌 API Surface
 
 ### Public Read API (Zero Authentication Required)
 
@@ -170,16 +165,13 @@ The platform enforces five bedrock architectural invariants verified by the test
 - `DELETE /api/places/{place}/photos/{photo}` $\rightarrow$ Delete self-authored photo.
 - `PATCH /api/places/{place}/photos/{photo}/cover` $\rightarrow$ Nominate image as listing cover.
 - `POST /api/places/{id}/reports` $\rightarrow$ Report inaccuracies, pin drift, or establishment closures.
-- `POST /api/places/{id}/claim` $\rightarrow$ Submit verified merchant ownership claim.
 
 ### Staff Administrative Console Rails (`auth`, `role:admin`)
 
-- `GET /api/export.geojson` & `GET /api/export.csv` $\rightarrow$ Privileged streaming exports of the verified atlas.
 - `GET /api/admin/queue` $\rightarrow$ Moderation queue browser with side-by-side JSON before/after diffs.
 - `POST /api/admin/queue/{id}/approve` $\rightarrow$ Commit queued action to live tables with karma award.
 - `POST /api/admin/queue/{id}/reject` $\rightarrow$ Reject queued action with mandatory explanation note.
 - `POST /api/admin/queue/{id}/merge` $\rightarrow$ Soft-delete duplicate and re-parent relations to target place ID.
-- `POST /api/admin/places/mass-relocate` $\rightarrow$ Apply delta latitude/longitude drift vector across place IDs.
 - `PATCH /api/admin/places/{id}/photos/reorder` $\rightarrow$ Atomically reorder gallery images via `sort_order`.
 - `DELETE /api/admin/places/{id}/photos/{photo}` $\rightarrow$ Dual-surface photo eviction from database and storage.
 - `PATCH /api/admin/users/{user}/role` $\rightarrow$ Promote/demote staff role (**Head Admin only**).
@@ -341,5 +333,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
-Crafted with care by [**Jake Carlo G. Mandi**](https://github.com/sprout-main).
