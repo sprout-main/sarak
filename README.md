@@ -321,7 +321,7 @@ Distributed under the **MIT License**.
 ```text
 MIT License
 
-Copyright (c) 2026 Sprout (sprout-main)
+Copyright (c) 2026 Jake Carlo G. Mandi (sprout-main)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -342,4 +342,4 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-Crafted with care by [**Sprout**](https://github.com/sprout-main).
+Crafted with care by [**Jake Carlo G. Mandi**](https://github.com/sprout-main).
