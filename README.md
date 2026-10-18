@@ -12,9 +12,9 @@
 [![Laravel 11](https://img.shields.io/badge/Laravel_11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
 [![MariaDB Spatial GIS](https://img.shields.io/badge/MariaDB_Spatial_SRID_4326-003545?style=for-the-badge&logo=mariadb&logoColor=white)](https://mariadb.com)
 [![Leaflet.js](https://img.shields.io/badge/Leaflet.js-Interactive_Canvas-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com)
-[![Test Suite](https://img.shields.io/badge/Tests-240_Passed_%7C_1242_Assertions-059669?style=for-the-badge&logo=php&logoColor=white)](#-verification--rigorous-testing)
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue?style=for-the-badge&logo=apache&logoColor=white)](LICENSE-APACHE)
-[![License: GPLv3](https://img.shields.io/badge/License-GPLv3-f43f5e?style=for-the-badge&logo=gnu&logoColor=white)](LICENSE-GPL)
+[![License: GPLv3 AND Apache 2.0](https://img.shields.io/badge/License-GPLv3_AND_Apache_2.0-7c3aed?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
+[![Terms: Apache 2.0](https://img.shields.io/badge/Terms-Apache_2.0-blue?style=for-the-badge&logo=apache&logoColor=white)](LICENSE-APACHE)
+[![Copyleft: GPLv3](https://img.shields.io/badge/Copyleft-GPLv3-f43f5e?style=for-the-badge&logo=gnu&logoColor=white)](LICENSE-GPL)
 
 <br />
 
@@ -309,24 +309,26 @@ sarak/
 
 ## ⚖️ License & Attribution
 
-Sarak is free and open-source software, dual-licensed under either:
+Sarak is free and open-source software, licensed under the combined terms of both:
 
-- **[Apache License, Version 2.0](LICENSE-APACHE)** (`Apache-2.0`)
 - **[GNU General Public License, Version 3 or later](LICENSE-GPL)** (`GPL-3.0-or-later`)
+- **[Apache License, Version 2.0](LICENSE-APACHE)** (`Apache-2.0`)
 
-at your option.
+**(SPDX: `GPL-3.0-or-later AND Apache-2.0`)**
 
 ```text
-Sarak Dual License (GPL-3.0-or-later OR Apache-2.0)
+Sarak Combined License (GPL-3.0-or-later AND Apache-2.0)
 
 Copyright (c) 2026 Jake Carlo G. Mandi (sprout-main)
 
-You may choose to use, copy, modify, distribute, and contribute to this project under the
-terms of either the Apache License, Version 2.0 or the GNU General Public License, Version 3
-or later.
+Recipients, users, and contributors must comply with the conditions of both licenses:
 
-* Apache 2.0: Permissive license with explicit patent grant and trademark protection.
-* GPLv3: Strong copyleft ensuring public distributions of derivative works remain free.
+* GPLv3 Copyleft: Sarak and all distributed derivative works must provide the complete
+  corresponding source code under the terms of the GNU General Public License v3 or later.
+* Apache 2.0 Protections: Users receive an explicit patent license grant and must preserve
+  attribution notices and file change notices. No trademark rights in the name "Sarak" or
+  associated logos are granted.
 
-See LICENSE-APACHE and LICENSE-GPL in the repository root for the full text of each license.
+As permitted by Section 7 of the GNU GPL version 3, the terms of the Apache License 2.0
+apply concurrently. See LICENSE, LICENSE-GPL, and LICENSE-APACHE in the repository root.
 ```
