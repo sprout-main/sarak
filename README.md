@@ -1,14 +1,14 @@
 <div align="center">
 
-# 🗺️ SARAK ATLAS
+# 🗺️ SARAK
 
 ### *The High-Precision Spatial Directory & Verified Civic Cartography Platform*
 
-> Grounded in the heart of **Bangued, Abra**, **Sarak** transforms fragmented local knowledge into an audited, high-precision geospatial atlas. Powered by spatial geometry, a zero-trust moderation barrier, and automated GIS pipelines.
+> Grounded in the heart of **Bangued, Abra**, **Sarak** transforms fragmented local knowledge into an audited, high-precision geospatial platform. Powered by spatial geometry, a zero-trust moderation barrier, and automated GIS pipelines.
 
 <br />
 
-[![Live Deployment](https://img.shields.io/badge/Live_Atlas-sarak.free.nf-10b981?style=for-the-badge&logo=googleearth&logoColor=white)](https://sarak.free.nf)
+[![Live Deployment](https://img.shields.io/badge/Live_Site-sarak.free.nf-10b981?style=for-the-badge&logo=googleearth&logoColor=white)](https://sarak.free.nf)
 [![Laravel 11](https://img.shields.io/badge/Laravel_11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
 [![MariaDB Spatial GIS](https://img.shields.io/badge/MariaDB_Spatial_SRID_4326-003545?style=for-the-badge&logo=mariadb&logoColor=white)](https://mariadb.com)
 [![Leaflet.js](https://img.shields.io/badge/Leaflet.js-Interactive_Canvas-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com)

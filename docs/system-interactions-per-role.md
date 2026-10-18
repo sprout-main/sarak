@@ -1,4 +1,4 @@
-# Sarak Atlas: Key System Interactions Per Role Matrix
+# Sarak: Key System Interactions Per Role Matrix
 
 > Generated under the **WomanA 1.0** architectural amplification protocol.  
 > Grounded in the **Sarak** geospatial engine (Laravel 11, MariaDB 10.4 SRID 4326 spatial engine, Leaflet.js wayfinding).
