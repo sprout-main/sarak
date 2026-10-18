@@ -13,7 +13,8 @@
 [![MariaDB Spatial GIS](https://img.shields.io/badge/MariaDB_Spatial_SRID_4326-003545?style=for-the-badge&logo=mariadb&logoColor=white)](https://mariadb.com)
 [![Leaflet.js](https://img.shields.io/badge/Leaflet.js-Interactive_Canvas-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com)
 [![Test Suite](https://img.shields.io/badge/Tests-240_Passed_%7C_1242_Assertions-059669?style=for-the-badge&logo=php&logoColor=white)](#-verification--rigorous-testing)
-[![License: MIT](https://img.shields.io/badge/License-MIT-f43f5e?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue?style=for-the-badge&logo=apache&logoColor=white)](LICENSE-APACHE)
+[![License: GPLv3](https://img.shields.io/badge/License-GPLv3-f43f5e?style=for-the-badge&logo=gnu&logoColor=white)](LICENSE-GPL)
 
 <br />
 
@@ -308,28 +309,24 @@ sarak/
 
 ## ⚖️ License & Attribution
 
-Distributed under the **MIT License**.
+Sarak is free and open-source software, dual-licensed under either:
+
+- **[Apache License, Version 2.0](LICENSE-APACHE)** (`Apache-2.0`)
+- **[GNU General Public License, Version 3 or later](LICENSE-GPL)** (`GPL-3.0-or-later`)
+
+at your option.
 
 ```text
-MIT License
+Sarak Dual License (GPL-3.0-or-later OR Apache-2.0)
 
 Copyright (c) 2026 Jake Carlo G. Mandi (sprout-main)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+You may choose to use, copy, modify, distribute, and contribute to this project under the
+terms of either the Apache License, Version 2.0 or the GNU General Public License, Version 3
+or later.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+* Apache 2.0: Permissive license with explicit patent grant and trademark protection.
+* GPLv3: Strong copyleft ensuring public distributions of derivative works remain free.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+See LICENSE-APACHE and LICENSE-GPL in the repository root for the full text of each license.
 ```
