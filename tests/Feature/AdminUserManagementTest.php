@@ -55,12 +55,26 @@ class AdminUserManagementTest extends TestCase
         $this->assertTrue(collect($response->json('data'))->every(fn ($u) => $u['role'] === 'admin'));
     }
 
-    public function test_admin_can_update_user_role(): void
+    public function test_only_head_admin_can_update_user_role(): void
     {
-        $admin = $this->adminUser();
+        $deputyAdmin = $this->adminUser();
         $target = User::factory()->create(['role' => 'user']);
 
-        $this->actingAs($admin)
+        // Deputy admin is blocked (403 Forbidden)
+        $this->actingAs($deputyAdmin)
+            ->patchJson('/api/admin/users/' . $target->id . '/role', [
+                'role' => 'admin',
+            ])
+            ->assertForbidden()
+            ->assertJsonPath('message', 'Only the head administrator can promote or demote user accounts.');
+
+        // Head Admin has full authority
+        $headAdmin = User::factory()->create([
+            'email' => 'admin@bangued.ph',
+            'role' => 'admin',
+        ]);
+
+        $this->actingAs($headAdmin)
             ->patchJson('/api/admin/users/' . $target->id . '/role', [
                 'role' => 'admin',
             ])

@@ -30,8 +30,10 @@ Route::get('/route', [RouteController::class, 'route']);
 Route::get('/search/suggest', [SearchController::class, 'suggest']);
 Route::get('/search/semantic', [SearchController::class, 'semantic']);
 Route::get('/contributors/leaderboard', [ContributorController::class, 'leaderboard']);
-Route::get('/export.geojson', [ExportController::class, 'geojson']);
-Route::get('/export.csv', [ExportController::class, 'csv']);
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/export.geojson', [ExportController::class, 'geojson']);
+    Route::get('/export.csv', [ExportController::class, 'csv']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::post('/places', [PlaceController::class, 'store']);
@@ -69,6 +71,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
         // creation bypasses the queue.
         Route::get('/places/{place}/photos', [PlaceAdminController::class, 'indexPhotos']);
         Route::post('/places/{place}/photos', [PlaceAdminController::class, 'storePhoto']);
+        Route::patch('/places/{place}/photos/reorder', [PlaceAdminController::class, 'reorderPhotos'])
+            ->name('admin.places.photos.reorder');
         Route::delete('/places/{place}/photos/{photo}', [PlaceAdminController::class, 'destroyPhoto'])
             ->name('admin.places.photos.destroy');
         Route::patch('/places/{place}/photos/{photo}/cover', [PlaceAdminController::class, 'updateCoverPhoto'])

@@ -1,12 +1,21 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StorageFileController;
 use App\Http\Controllers\TileProxyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('map');
 })->name('map');
+
+Route::get('/public/storage/{path}', [StorageFileController::class, 'show'])
+    ->where('path', '.*')
+    ->name('public.storage.file');
+
+Route::get('/storage/{path}', [StorageFileController::class, 'show'])
+    ->where('path', '.*')
+    ->name('storage.file');
 
 Route::get('/tiles/{style}/{z}/{x}/{y}.png', [TileProxyController::class, 'show'])
     ->whereIn('style', ['dark', 'light'])

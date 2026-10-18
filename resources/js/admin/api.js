@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.withCredentials = true;
 const csrfMeta = document.querySelector('meta[name="csrf-token"]');
 if (csrfMeta) {
     axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfMeta.getAttribute('content');

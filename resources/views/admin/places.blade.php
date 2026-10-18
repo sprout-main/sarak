@@ -231,28 +231,43 @@
                     <p class="mb-2 text-[11px] text-zinc-500" x-show="photosLoading">Loading photos&hellip;</p>
 
                     <div class="grid grid-cols-2 gap-2 sm:grid-cols-3">
-                        <template x-for="p in photos" :key="p.id">
-                            <figure class="relative overflow-hidden rounded-lg border" x-bind:class="p.is_cover ? 'border-emerald-400/60' : 'border-white/10'">
+                        <template x-for="(p, idx) in photos" :key="p.id">
+                            <figure class="relative overflow-hidden rounded-lg border group/photo" x-bind:class="p.is_cover ? 'border-emerald-400/60' : 'border-white/10'">
                                 <img class="h-24 w-full object-cover" x-bind:src="photoUrl(p)" x-bind:alt="'Place photo ' + p.id">
+                                <div class="absolute left-1 top-1 flex items-center gap-0.5 z-10">
+                                    <span class="rounded bg-black/80 px-1 py-0.5 text-[9px] font-mono font-bold !text-white border !border-white/20 shadow-sm" x-text="'#' + (idx + 1)"></span>
+                                    <button type="button" class="btn btn-xs btn-ghost bg-black/80 !p-1 !text-zinc-200 hover:!text-white disabled:opacity-30 disabled:pointer-events-none border !border-white/20"
+                                        x-on:click="movePhoto(idx, -1)"
+                                        x-bind:disabled="idx === 0 || photoBusy === p.id"
+                                        title="Move photo earlier">
+                                        <i class="ph ph-caret-left text-xs"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-xs btn-ghost bg-black/80 !p-1 !text-zinc-200 hover:!text-white disabled:opacity-30 disabled:pointer-events-none border !border-white/20"
+                                        x-on:click="movePhoto(idx, 1)"
+                                        x-bind:disabled="idx === photos.length - 1 || photoBusy === p.id"
+                                        title="Move photo later">
+                                        <i class="ph ph-caret-right text-xs"></i>
+                                    </button>
+                                </div>
                                 <div class="absolute inset-x-0 bottom-0 flex items-center justify-between gap-1 px-1.5 py-1"
                                     style="background:linear-gradient(transparent, rgba(0,0,0,0.85));">
                                     <span class="rounded px-1 py-0.5 text-[10px] font-semibold"
                                         x-bind:class="{
-                                            'bg-emerald-500/90 text-black': p.status === 'approved',
-                                            'bg-amber-500/90 text-black': p.status === 'pending',
-                                            'bg-rose-500/90 text-white': p.status === 'rejected'
+                                            'bg-emerald-500/90 !text-black': p.status === 'approved',
+                                            'bg-amber-500/90 !text-black': p.status === 'pending',
+                                            'bg-rose-500/90 !text-white': p.status === 'rejected'
                                         }"
                                         x-text="p.status"></span>
                                     <span class="rounded bg-black/70 px-1 py-0.5 text-[10px] font-semibold text-emerald-300" x-show="p.is_cover">COVER</span>
                                 </div>
-                                <div class="absolute right-1 top-1 flex gap-1">
-                                    <button type="button" class="btn btn-xs btn-ghost bg-black/70"
+                                <div class="absolute right-1 top-1 flex gap-1 z-10">
+                                    <button type="button" class="btn btn-xs btn-ghost bg-black/70 !text-zinc-200 hover:!text-amber-300 border !border-white/20"
                                         x-on:click="setCoverPhoto(p)"
                                         x-bind:disabled="p.is_cover || photoBusy === p.id"
                                         title="Use as cover photo">
                                         <i class="ph ph-star"></i>
                                     </button>
-                                    <button type="button" class="btn btn-xs btn-ghost bg-black/70 text-rose-400 hover:text-rose-300"
+                                    <button type="button" class="btn btn-xs btn-ghost bg-black/70 !text-rose-400 hover:!text-rose-300 border !border-white/20"
                                         x-on:click="deletePhoto(p)"
                                         x-bind:disabled="photoBusy === p.id"
                                         title="Delete photo">

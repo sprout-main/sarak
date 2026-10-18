@@ -26,13 +26,17 @@ class SystemRefinementsTest extends TestCase
 
     public function test_user_controller_role_and_delete_audit_logging(): void
     {
+        $headAdmin = User::factory()->create([
+            'email' => 'admin@bangued.ph',
+            'role' => 'admin',
+        ]);
         $admin = $this->adminUser();
         $targetUser = User::factory()->create([
             'role' => 'user',
         ]);
 
-        // Role update
-        $res = $this->actingAs($admin)->patchJson("/api/admin/users/{$targetUser->id}/role", [
+        // Role update (authorized by Head Admin)
+        $res = $this->actingAs($headAdmin)->patchJson("/api/admin/users/{$targetUser->id}/role", [
             'role' => 'admin',
         ]);
         $res->assertStatus(200);
@@ -41,7 +45,7 @@ class SystemRefinementsTest extends TestCase
             'model' => 'user',
             'model_id' => $targetUser->id,
             'action' => 'role_change',
-            'actor_id' => $admin->id,
+            'actor_id' => $headAdmin->id,
         ]);
 
         // User delete

@@ -50,7 +50,7 @@ class UserController extends Controller
                 'created_at' => $u->created_at?->toISOString(),
                 'is_current_user' => $request->user()->id === $u->id,
                 'is_head_admin' => strcasecmp(trim($u->email), 'admin@bangued.ph') === 0,
-                'can_edit_role' => $request->user()->id !== $u->id && strcasecmp(trim($u->email), 'admin@bangued.ph') !== 0,
+                'can_edit_role' => $request->user()->isHeadAdmin() && $request->user()->id !== $u->id && strcasecmp(trim($u->email), 'admin@bangued.ph') !== 0,
                 'can_delete' => $request->user()->id !== $u->id && strcasecmp(trim($u->email), 'admin@bangued.ph') !== 0,
             ]),
             'meta' => [
@@ -74,6 +74,10 @@ class UserController extends Controller
 
         if (strcasecmp(trim($user->email), 'admin@bangued.ph') === 0) {
             return response()->json(['message' => 'The head administrator role cannot be altered.'], 422);
+        }
+
+        if (!$request->user()->isHeadAdmin()) {
+            return response()->json(['message' => 'Only the head administrator can promote or demote user accounts.'], 403);
         }
 
         $beforeRole = $user->role instanceof UserRole ? $user->role->value : (string) $user->role;

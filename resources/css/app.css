@@ -1209,6 +1209,23 @@ html[data-theme="light"] .hover\:bg-white\/\[0\.02\]:hover {
     background-color: rgba(9, 9, 11, 0.03);
 }
 
+html[data-theme="light"] .hover\:text-white:hover:not(.spatial-hud-pill):not(.spatial-lightbox-canvas *):not(.spatial-hero-photo *) {
+    color: var(--atlas-strong-text) !important;
+}
+
+html[data-theme="light"] .hover\:text-zinc-100:hover:not(.spatial-hud-pill):not(.spatial-lightbox-canvas *):not(.spatial-hero-photo *) {
+    color: var(--atlas-strong-text) !important;
+}
+
+html[data-theme="light"] .hover\:bg-white\/5:hover:not(.spatial-hud-pill):not(.spatial-lightbox-canvas *):not(.spatial-hero-photo *) {
+    background-color: rgba(9, 9, 11, 0.06) !important;
+}
+
+html[data-theme="light"] .hover\:bg-white\/10:hover:not(.spatial-hud-pill):not(.spatial-lightbox-canvas *):not(.spatial-hero-photo *) {
+    background-color: rgba(9, 9, 11, 0.08) !important;
+}
+
+
 /* Phosphor Icons normalization and font authority */
 @font-face {
     font-family: "Phosphor";

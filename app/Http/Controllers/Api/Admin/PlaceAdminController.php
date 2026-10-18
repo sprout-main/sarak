@@ -402,9 +402,44 @@ class PlaceAdminController extends Controller
                 'path' => $photo->path,
                 'status' => $photo->status,
                 'is_cover' => (bool) $photo->is_cover,
+                'sort_order' => (int) $photo->sort_order,
                 'uploader_id' => $photo->uploader_id,
                 'created_at' => $photo->created_at?->toISOString(),
             ]),
+        ]);
+    }
+
+    public function reorderPhotos(Request $request, Place $place): JsonResponse
+    {
+        $this->authorize('update', $place);
+
+        $validated = $request->validate([
+            'photo_ids' => ['required', 'array'],
+            'photo_ids.*' => ['integer'],
+        ]);
+
+        $photoIds = $validated['photo_ids'];
+
+        $existingPhotos = $place->photos()->whereIn('id', $photoIds)->get()->keyBy('id');
+        if ($existingPhotos->count() !== count($photoIds)) {
+            return response()->json(['message' => 'One or more photo IDs do not belong to this place.'], 422);
+        }
+
+        DB::transaction(function () use ($photoIds, $existingPhotos, $place, $request) {
+            foreach ($photoIds as $index => $id) {
+                $existingPhotos[$id]->update(['sort_order' => $index + 1]);
+            }
+
+            $this->audit->record('place', $place->id, 'photo_reorder', $request->user()->id, [
+                'photo_ids' => $photoIds,
+            ]);
+        });
+
+        return response()->json([
+            'data' => [
+                'message' => 'Photos reordered successfully.',
+                'photo_ids' => $photoIds,
+            ],
         ]);
     }
 

@@ -11,8 +11,22 @@ class ExportTest extends TestCase
 {
     use CoreCatalog, RefreshDatabase;
 
+    public function test_guest_and_resident_cannot_export_geojson_or_csv(): void
+    {
+        // 1. Unauthenticated guest is rejected
+        $this->getJson('/api/export.geojson')->assertUnauthorized();
+        $this->getJson('/api/export.csv')->assertUnauthorized();
+
+        // 2. Authenticated resident (non-admin) is forbidden
+        $resident = $this->residentUser();
+        $this->actingAs($resident)->getJson('/api/export.geojson')->assertForbidden();
+        $this->actingAs($resident)->getJson('/api/export.csv')->assertForbidden();
+    }
+
     public function test_geojson_export_contains_only_approved(): void
     {
+        $admin = $this->adminUser();
+
         $approved = Place::factory()->create([
             'name' => 'Sanchez Grocery',
             'category_id' => $this->category('grocery')->id,
@@ -22,7 +36,7 @@ class ExportTest extends TestCase
 
         Place::factory()->unapproved()->create(['name' => 'Hidden Pending Place']);
 
-        $response = $this->get('/api/export.geojson');
+        $response = $this->actingAs($admin)->get('/api/export.geojson');
 
         $response->assertOk();
         $response->assertHeader('Content-Type', 'application/geo+json');
@@ -47,12 +61,13 @@ class ExportTest extends TestCase
 
     public function test_csv_export_rows_match_approved(): void
     {
+        $admin = $this->adminUser();
         $approvedCount = 1;
 
         Place::factory()->create(['name' => 'Rizal Supermart']);
         Place::factory()->unapproved()->create(['name' => 'Hidden CSV Place']);
 
-        $response = $this->get('/api/export.csv');
+        $response = $this->actingAs($admin)->get('/api/export.csv');
 
         $response->assertOk();
         $this->assertStringStartsWith('text/csv', $response->headers->get('Content-Type'));

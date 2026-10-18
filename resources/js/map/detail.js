@@ -22,7 +22,10 @@ export function daysTable(hours, today) {
 
 export function photoUrl(photo) {
     if (!photo || !photo.path) return null;
-    return `/storage/${String(photo.path).replace(/^\/+/, '')}`;
+    const clean = String(photo.path).replace(/^\/+/, '');
+    if (clean.startsWith('public/storage/')) return `/${clean}`;
+    if (clean.startsWith('storage/')) return `/public/${clean}`;
+    return `/public/storage/${clean}`;
 }
 
 export function telHref(phone) {

@@ -1379,6 +1379,34 @@ Alpine.data('mapComposer', () => ({
         this.resetLightboxTransform();
     },
 
+    async adminDeleteActivePhoto() {
+        if (!window.SarakIsAdmin) return;
+        if (!this.detailPlace || !Array.isArray(this.detailPlace.photos) || !this.detailPlace.photos.length) return;
+
+        const photo = this.detailPlace.photos[this.activePhotoIdx || 0];
+        if (!photo) return;
+
+        if (!window.confirm('Delete this photo as administrator? This permanently removes the file from disk.')) {
+            return;
+        }
+
+        try {
+            await api.adminDeletePhoto(this.detailPlace.id, photo.id);
+            this.detailPlace.photos.splice(this.activePhotoIdx || 0, 1);
+            if (this.activePhotoIdx >= this.detailPlace.photos.length) {
+                this.activePhotoIdx = Math.max(0, this.detailPlace.photos.length - 1);
+            }
+            if (this.detailPlace.photos.length === 0) {
+                this.closePhotoLightbox();
+            } else {
+                prefetchAdjacentPhotos(this.detailPlace.photos, this.activePhotoIdx, (p) => this.photoUrlFor(p));
+            }
+            this.showToast('Photo deleted successfully');
+        } catch (err) {
+            this.showToast(err.message || 'Failed to delete photo');
+        }
+    },
+
     toggleLightboxZoom(e) {
         if (this.lightboxZoom > 1.05) {
             this.resetLightboxTransform();

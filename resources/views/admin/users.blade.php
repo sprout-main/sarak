@@ -123,7 +123,7 @@
                                         class="btn btn-xs btn-ghost disabled:opacity-30 disabled:pointer-events-none"
                                         :disabled="!user.can_edit_role"
                                         x-on:click="openRoleModal(user)"
-                                        :title="user.is_head_admin ? 'Head administrator role cannot be altered' : (!user.can_edit_role ? 'Administrators cannot edit their own role' : 'Change user permissions/role')"
+                                        :title="user.is_head_admin ? 'Head administrator role cannot be altered' : (!user.can_edit_role ? 'Only the head administrator can alter user roles' : 'Change user permissions/role')"
                                     >
                                         <i class="ph ph-shield-check"></i> Role
                                     </button>

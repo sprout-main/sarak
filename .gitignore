@@ -31,14 +31,19 @@
 /storage/app/tiles/
 /storage/app/quarantine/
 
-# Stale nested copies, scratch directories, docs, and tasks
+# Stale nested copies, scratch directories, and tasks
 /sarakbangued/
 /scratch/
-/docs/
 /tasks/
+/docs/*
+!/docs/backend-contract.md
+!/docs/system-interactions-per-role.md
 
 # External skill corpus, not part of this project
 /woman/
+
+# Binary documents and office backups
+*.docx
 
 # Source photography for the seeder (136 MB)
 /bangued/

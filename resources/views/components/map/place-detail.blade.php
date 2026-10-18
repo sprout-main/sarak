@@ -96,6 +96,21 @@
                             </div>
                         </template>
 
+                        <!-- Admin Delete Photo Button (Map Hero) -->
+                        <template x-if="window.SarakIsAdmin && detailPlace.photos && detailPlace.photos.length">
+                            <div class="absolute top-2.5 right-2.5 z-20">
+                                <button
+                                    type="button"
+                                    @click.stop="adminDeleteActivePhoto()"
+                                    class="flex items-center gap-1.5 rounded-full bg-rose-950/85 hover:bg-rose-900 text-rose-300 hover:text-white px-2.5 py-1 text-xs font-semibold border border-rose-500/40 backdrop-blur-md transition-all shadow-lg active:scale-95 cursor-pointer"
+                                    title="Delete photo as administrator"
+                                >
+                                    <i class="ph ph-trash text-sm"></i>
+                                    <span>Delete</span>
+                                </button>
+                            </div>
+                        </template>
+
                         <!-- Photo Counter Indicator -->
                         <template x-if="detailPlace.photos && detailPlace.photos.length > 1">
                             <div class="absolute bottom-2.5 right-2.5 z-20 pointer-events-none rounded-full bg-black/80 px-2.5 py-0.5 font-mono text-[11px] font-medium text-white backdrop-blur-md border border-white/15 shadow-sm">
@@ -441,6 +456,20 @@
                         Reset
                     </button>
                 </div>
+
+                <!-- Admin Photo Delete Action -->
+                <template x-if="window.SarakIsAdmin && detailPlace && detailPlace.photos && detailPlace.photos.length">
+                    <button
+                        type="button"
+                        @click.stop="adminDeleteActivePhoto()"
+                        class="flex h-10 px-3.5 shrink-0 items-center justify-center gap-1.5 rounded-full bg-rose-950/85 hover:bg-rose-900 text-rose-300 hover:text-white border border-rose-500/40 transition-all cursor-pointer shadow-xl active:scale-95 z-50 text-xs font-semibold"
+                        title="Delete photo as administrator"
+                        aria-label="Delete photo as administrator"
+                    >
+                        <i class="ph-bold ph-trash text-base"></i>
+                        <span class="hidden sm:inline">Delete Photo</span>
+                    </button>
+                </template>
 
                 <!-- Close Button -->
                 <button

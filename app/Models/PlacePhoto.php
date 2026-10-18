@@ -12,7 +12,13 @@ class PlacePhoto extends Model
         'path',
         'uploader_id',
         'is_cover',
+        'sort_order',
         'status',
+    ];
+
+    protected $casts = [
+        'is_cover' => 'boolean',
+        'sort_order' => 'integer',
     ];
 
     public function place(): BelongsTo

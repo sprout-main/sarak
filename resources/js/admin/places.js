@@ -187,14 +187,18 @@ export function adminPlaces() {
         photoUrl(photo) {
             const path = photo && photo.path ? photo.path : '';
             if (/^(https?:)?\/\//i.test(path)) return path;
-            return '/storage/' + String(path).replace(/^\/+/, '');
+            const clean = String(path).replace(/^\/+/, '');
+            if (clean.startsWith('public/storage/')) return `/${clean}`;
+            if (clean.startsWith('storage/')) return `/public/${clean}`;
+            return `/public/storage/${clean}`;
         },
 
         async loadPhotos(id) {
             this.photosLoading = true;
             try {
                 const r = await api.get(`/api/admin/places/${id}/photos`);
-                this.photos = Array.isArray(r.data?.data) ? r.data.data : [];
+                const list = Array.isArray(r?.data) ? r.data : (Array.isArray(r) ? r : (Array.isArray(r?.data?.data) ? r.data.data : []));
+                this.photos = list;
             } catch (e) {
                 this.photos = [];
                 notify(e.response?.data?.message || 'Could not load photos', 'error');
@@ -249,6 +253,30 @@ export function adminPlaces() {
                 await this.reload();
             } catch (e) {
                 notify(e.response?.data?.message || 'Could not delete photo', 'error');
+            } finally {
+                this.photoBusy = null;
+            }
+        },
+
+        async movePhoto(index, direction) {
+            const targetIdx = index + direction;
+            if (targetIdx < 0 || targetIdx >= this.photos.length) return;
+
+            const temp = this.photos[index];
+            this.photos[index] = this.photos[targetIdx];
+            this.photos[targetIdx] = temp;
+            this.photos = [...this.photos];
+
+            this.photoBusy = temp.id;
+            try {
+                const photoIds = this.photos.map(p => p.id);
+                const r = await api.patch(`/api/admin/places/${this.form.id}/photos/reorder`, {
+                    photo_ids: photoIds,
+                });
+                notify(r.data?.data?.message || 'Photos reordered');
+            } catch (e) {
+                notify(e.response?.data?.message || 'Could not reorder photos', 'error');
+                await this.loadPhotos(this.form.id);
             } finally {
                 this.photoBusy = null;
             }

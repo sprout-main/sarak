@@ -55,7 +55,7 @@ export function adminUsers() {
 
         openRoleModal(user) {
             if (user.can_edit_role === false) {
-                notify(user.is_head_admin ? 'The head administrator role cannot be altered.' : 'Administrators cannot edit their own role.', 'error');
+                notify(user.is_head_admin ? 'The head administrator role cannot be altered.' : 'Only the head administrator can alter user roles.', 'error');
                 return;
             }
             this.roleModalUser = user;

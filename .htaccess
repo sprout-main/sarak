@@ -38,11 +38,19 @@
     RewriteRule .*\.(md|sql)$ - [F,L,NC]
 
     # ---------------------------------------------------------------------
+    # Direct static file serving for storage/photos and avatars.
+    # On InfinityFree, %{DOCUMENT_ROOT} is unreliable and /htdocs/storage is
+    # a physical folder that triggers 403 on directory walk. An explicit 301
+    # redirects the browser to /public/storage/ which Apache serves directly.
+    # ---------------------------------------------------------------------
+    RewriteRule ^storage/(photos|avatars)/(.*)$ /public/storage/$1/$2 [R=301,L]
+
+
+    # ---------------------------------------------------------------------
     # Hand everything else to public/
     # ---------------------------------------------------------------------
-    RewriteRule ^$ public/ [L]
     RewriteCond %{REQUEST_URI} !^/public/
-    RewriteRule ^(.*)$ public/$1 [L]
+    RewriteRule ^(.*)$ /public/$1 [L]
 </IfModule>
 
 <IfModule !mod_rewrite.c>
@@ -51,5 +59,4 @@
     </IfModule>
 </IfModule>
 
-Options -Indexes
 DirectoryIndex index.php

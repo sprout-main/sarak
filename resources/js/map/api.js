@@ -104,6 +104,7 @@ export const api = {
     adminUpdatePlace: (placeId, body) => request(`/api/admin/places/${placeId}`, { method: 'PATCH', body }),
     adminUpdatePlaceLocation: (placeId, lat, lng, barangay_id = null) => request(`/api/admin/places/${placeId}/location`, { method: 'PATCH', body: { lat, lng, barangay_id } }),
     adminDeletePlace: (placeId) => request(`/api/admin/places/${placeId}`, { method: 'DELETE' }),
+    adminDeletePhoto: (placeId, photoId) => request(`/api/admin/places/${placeId}/photos/${photoId}`, { method: 'DELETE' }),
 };
 
 export function debounce(fn, wait = 250) {

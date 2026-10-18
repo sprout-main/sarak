@@ -64,9 +64,8 @@ class Place extends Model
 
     public function photos(): HasMany
     {
-        // id is the tiebreaker so cover_photo is deterministic even if more
-        // than one row ever ends up with is_cover set.
-        return $this->hasMany(PlacePhoto::class)->orderByDesc('is_cover')->orderBy('id');
+        // is_cover first, then manual sort_order, with id as deterministic tiebreaker.
+        return $this->hasMany(PlacePhoto::class)->orderByDesc('is_cover')->orderBy('sort_order')->orderBy('id');
     }
 
     public function reports(): HasMany

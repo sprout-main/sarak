@@ -117,6 +117,51 @@ html[data-theme="light"] .badge-zinc {
     border-color: rgba(0, 0, 0, 0.12);
 }
 
+/* Media & Photo Reordering Controls Optical Invariance in Admin */
+.group\/photo,
+html[data-theme="light"] .group\/photo {
+    contain: layout paint;
+}
+
+html[data-theme="light"] .group\/photo .text-white,
+html[data-theme="light"] .group\/photo span.text-white,
+html[data-theme="light"] .group\/photo .font-mono.font-bold,
+html[data-theme="light"] .group\/photo .hover\:text-white:hover {
+    color: #ffffff !important;
+}
+
+html[data-theme="light"] .group\/photo .text-zinc-300 {
+    color: #e4e4e7 !important;
+}
+
+html[data-theme="light"] .group\/photo .btn-ghost {
+    color: #e4e4e7 !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+html[data-theme="light"] .group\/photo .btn-ghost:hover {
+    color: #ffffff !important;
+    background-color: rgba(0, 0, 0, 0.95) !important;
+}
+
+html[data-theme="light"] .group\/photo .text-emerald-300 {
+    color: #6ee7b7 !important;
+}
+
+html[data-theme="light"] .group\/photo .text-rose-400 {
+    color: #fb7185 !important;
+}
+
+html[data-theme="light"] .group\/photo .hover\:text-rose-300:hover {
+    color: #fda4af !important;
+}
+
+html[data-theme="light"] .group\/photo .border-white\/20,
+html[data-theme="light"] .group\/photo .border-white\/10 {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+
 body {
     font-family: 'Geist Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
     background-color: var(--bg);

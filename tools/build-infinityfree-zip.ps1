@@ -17,7 +17,8 @@ PowerShell 5.1's Compress-Archive silently skips hidden files, which would drop
 param(
     [string] $ProjectRoot,
     [string] $OutFile     = 'sarak_infinityfree_deployment.zip',
-    [switch] $SkipComposer
+    [switch] $SkipComposer,
+    [switch] $SkipPhotos
 )
 
 $ErrorActionPreference = 'Stop'
@@ -57,6 +58,40 @@ function Write-Guard([string] $RelativeDir) {
     Set-Content -LiteralPath (Join-Path $dir '.gitignore') -Value "*`n!.gitignore" -Encoding ASCII
 }
 
+function Write-PublicStorage-Htaccess([string] $RelativeDir) {
+    $dir = Join-Path $stage $RelativeDir
+    if (-not (Test-Path -LiteralPath $dir)) { New-Item -ItemType Directory -Path $dir -Force | Out-Null }
+    $body = @(
+        '# Allow public read access to uploaded media files',
+        '<IfModule mod_authz_core.c>',
+        '    Require all granted',
+        '</IfModule>',
+        '<IfModule !mod_authz_core.c>',
+        '    Order allow,deny',
+        '    Allow from all',
+        '</IfModule>',
+        '',
+        '# Prevent executing PHP or script files in upload directory',
+        '<FilesMatch "\.(php|phtml|phar|pl|py|cgi|asp|js|sh)$">',
+        '    <IfModule mod_authz_core.c>',
+        '        Require all denied',
+        '    </IfModule>',
+        '    <IfModule !mod_authz_core.c>',
+        '        Order allow,deny',
+        '        Deny from all',
+        '    </IfModule>',
+        '</FilesMatch>',
+        '',
+        '# Enable CORS and caching headers for photos and avatars',
+        '<IfModule mod_headers.c>',
+        '    Header set Access-Control-Allow-Origin "*"',
+        '    Header set Cache-Control "public, max-age=31536000, immutable"',
+        '</IfModule>'
+    )
+    Set-Content -LiteralPath (Join-Path $dir '.htaccess') -Value $body -Encoding ASCII
+    Set-Content -LiteralPath (Join-Path $dir '.gitignore') -Value "*`n!.gitignore" -Encoding ASCII
+}
+
 Write-Host "staging -> $stage"
 
 foreach ($tree in @('app', 'bootstrap', 'config', 'database', 'resources', 'routes')) {
@@ -92,12 +127,16 @@ if (-not $SkipComposer) {
 # Photos ship byte-identical to the database paths, re-encoded or not.
 $photosDest = Join-Path $stage 'public/storage/photos'
 New-Item -ItemType Directory -Path $photosDest -Force | Out-Null
-Copy-Item -Path (Join-Path $ProjectRoot 'storage/app/public/photos/*') -Destination $photosDest -Recurse -Force
+if (-not $SkipPhotos) {
+    Copy-Item -Path (Join-Path $ProjectRoot 'storage/app/public/photos/*') -Destination $photosDest -Recurse -Force
+}
 New-Item -ItemType Directory -Path (Join-Path $stage 'public/storage/avatars') -Force | Out-Null
-Write-Guard 'public/storage'
+Write-PublicStorage-Htaccess 'public/storage'
 
 # Map tiles are served by TileProxyController out of storage/app.
-Copy-Tree 'storage/app/tiles'
+if (-not $SkipPhotos) {
+    Copy-Tree 'storage/app/tiles'
+}
 
 # The repository's cached package/provider manifests were generated on a machine
 # that had the dev dependencies installed, so they list laravel/breeze,
@@ -137,6 +176,10 @@ if (Test-Path -LiteralPath $dump) {
     Copy-Item -LiteralPath $dump -Destination (Join-Path $stage 'infinityfree_database.sql') -Force
 } else {
     Write-Warning 'No database/infinityfree_database.sql found; zip will ship without a dump.'
+}
+$updateSql = Join-Path $ProjectRoot 'database/update_sort_order.sql'
+if (Test-Path -LiteralPath $updateSql) {
+    Copy-Item -LiteralPath $updateSql -Destination (Join-Path $stage 'update_sort_order.sql') -Force
 }
 
 function New-ZipFromTree([string] $SourceDir, [string] $ZipPath) {
@@ -237,15 +280,21 @@ if (Test-Path -LiteralPath $out) { Remove-Item -LiteralPath $out -Force }
 New-ZipFromTree -SourceDir $stage -ZipPath $out
 $zipNames = Assert-ZipEntries -ZipPath $out
 
-$stagedPhotos = @(Get-ChildItem (Join-Path $stage 'public/storage/photos') -Recurse -File -Force)
-$zippedPhotos = @($zipNames | Where-Object { $_.StartsWith('public/storage/photos/') })
-if ($stagedPhotos.Count -ne $zippedPhotos.Count) {
-    throw "Photo count mismatch: staged $($stagedPhotos.Count), zipped $($zippedPhotos.Count)"
+if (-not $SkipPhotos) {
+    $stagedPhotos = @(Get-ChildItem (Join-Path $stage 'public/storage/photos') -Recurse -File -Force)
+    $zippedPhotos = @($zipNames | Where-Object { $_.StartsWith('public/storage/photos/') -and -not $_.EndsWith('/') })
+    if ($stagedPhotos.Count -ne $zippedPhotos.Count) {
+        throw "Photo count mismatch: staged $($stagedPhotos.Count), zipped $($zippedPhotos.Count)"
+    }
 }
 
 $files = Get-ChildItem $stage -Recurse -File -Force
 Write-Host ''
 Write-Host ("zip     : {0}  ({1:N1} MB)" -f $out, ((Get-Item $out).Length / 1MB))
 Write-Host ("staged  : {0} files, {1:N1} MB" -f $files.Count, (($files | Measure-Object Length -Sum).Sum / 1MB))
-Write-Host ("photos  : {0} files, {1:N1} MB" -f $zippedPhotos.Count, (($stagedPhotos | Measure-Object Length -Sum).Sum / 1MB))
+if (-not $SkipPhotos) {
+    Write-Host ("photos  : {0} files, {1:N1} MB" -f $zippedPhotos.Count, (($stagedPhotos | Measure-Object Length -Sum).Sum / 1MB))
+} else {
+    Write-Host "photos  : skipped (-SkipPhotos update bundle)"
+}
 Write-Host "staging dir kept at $stage"
